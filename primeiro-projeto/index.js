@@ -1,8 +1,11 @@
 const express = require("express")
 const app = express()
 const uuid = require("uuid")
-const poit = 3000
+const poit = 3001
+import cors from 'cors'
+
 app.use(express.json())
+app.use(cors())
 
 const users = []
 
@@ -24,9 +27,9 @@ app.get("/protect", (request, response) => {
 })
 
 app.post("/protect", (request, response) => {
-    const { name, age, address, city, parents } = request.body
+    const { name, age } = request.body
 
-    const user = { id: uuid.v4(), name, age, address, city, parents }
+    const user = { id: uuid.v4(), name, age  }
     users.push(user)
 
     return response.status(201).json(user)
